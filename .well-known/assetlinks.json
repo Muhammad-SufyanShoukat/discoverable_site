@@ -1,0 +1,14 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "com.example.undisclosed_recruit",
+        "package_name": "com.undiscovered_recruit",
+        "sha256_cert_fingerprints": [
+          "25:BF:A4:DC:8D:A6:1E:D6:66:40:78:BE:33:D4:E2:26:90:A4:B4:3D:CB:20:9A:28:00:0A:AA:92:1B:D9:FF:C3"
+        ]
+      }
+    }
+  ]

@@ -1,0 +1,791 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "Api Documentation of Undiscovered Recruits"
+  },
+  "host": "localhost:2027",
+  "servers": [
+    {
+      "url": "http://localhost:2027/",
+      "description": "Local Sever"
+    }
+  ],
+  "basePath": "/api/v1/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/user/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "API for user login",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "demo@yopmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Abc@123"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/auth/user/social_login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "API for user login",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "New"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Coach1"
+                },
+                "countryCode": {
+                  "type": "string",
+                  "example": "+91"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "9876543210"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "demo@yopmail.com"
+                },
+                "socialId": {
+                  "type": "string",
+                  "example": "1234TestSocialID"
+                },
+                "registrationType": {
+                  "type": "string",
+                  "example": "google"
+                },
+                "platformType": {
+                  "type": "string",
+                  "example": "ios"
+                },
+                "deviceId": {
+                  "type": "string",
+                  "example": "123456789XYZ"
+                },
+                "platformVersion": {
+                  "type": "string",
+                  "example": "v1.0.0"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "countryCode",
+                "phone",
+                "email",
+                "socialId",
+                "registrationType",
+                "platformType",
+                "deviceId",
+                "platformVersion"
+              ]
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/auth/user/generate_access_token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/admin/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "API for admin login",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "admin@yopmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Abc@123"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ]
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/auth/admin/generate_access_token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/user/signup_user": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/auth/user/validate_otp": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "API for validating otp",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "number",
+                  "example": 9876543210
+                },
+                "email": {
+                  "type": "string",
+                  "example": "demo@yopmail.com"
+                },
+                "otp": {
+                  "type": "number",
+                  "example": 12345
+                }
+              },
+              "required": [
+                "phone",
+                "email",
+                "otp"
+              ]
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": [
+          "User APIs"
+        ],
+        "description": "User profile API",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/profile": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "Admin profile API",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/get_roles_list": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "Get roles list API",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/create_users": {
+      "post": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Create users API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "myName"
+                }
+              },
+              "required": [
+                "firstName"
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/users_list": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "Users list API",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/active_users_list": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "Active users list API",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/users_list_by_id/{id}": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "Users list by ID API",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/update_users": {
+      "put": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Update users API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "myName"
+                }
+              },
+              "required": [
+                "firstName"
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/admin/delete_users/{id}": {
+      "delete": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "description": "Delete users API",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "X-API key is required",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "header",
+            "description": "Platform is required",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

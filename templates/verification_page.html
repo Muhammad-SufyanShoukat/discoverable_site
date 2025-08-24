@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;font-family:Arial, Helvetica, sans-serif;}
+.container { width: 100%; height: 100vh;background: #FF3333;display: flex;align-items: center;justify-content: center;}
+.btn {padding: 10px 60px; background: #fff; border: 0; outline: none;cursor: pointer;font-size: 22px; font-weight: 500;border-radius: 30px;}
+.popup { width: 400PX;visibility: hidden; background: #fff; border-radius: 6PX; position: absolute; top: 0; left: 50%;
+     transform: translate(-50%,-50%)scale(0.1);transition: transform 0.4s, top 0.4s;
+text-align: center; padding: 0 30px 30px; color: #333;}
+.open-popup{ visibility: visible; top: 50%;transform: translate(-50%,-50%)scale(1);}
+.popup img { width: 100px; margin-top: -50px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)}
+.popup h2 { font-size: 38px; font-weight: 500; margin: 30px 0 10px;}
+.popup button{ width: 100%; margin-top: 50px; padding: 10px 0; background: #6fd649; color: #fff; border: 0;outline: none; font-size: 18px;border-radius: 4px;
+cursor: pointer;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2)}
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Undiscovered Recruits Account Verification</title>
+</head>
+<body>
+
+ <div class="container">
+<div class="popup" id="popup">
+    <img src= "">
+    <h2>Email Verified</h2> 
+    <P>Your Account Has Been Verified Successfully!</P>
+    </br>
+    <P>Please log in to the Undiscovered Recruits App</P>
+    </br>
+    <!-- <button type="button" onclick="closePopup()">OK</button> -->
+    <i class="fa fa-check" style="font-size:51px;color:greenyellow"></i>
+</div>
+
+<div class="popup" id="popup2">
+    <h2>Email Already Verified</h2> 
+    <!-- <button type="button" onclick="closePopup()">OK</button> -->
+    <i class="fa fa-check" style="font-size:51px;color:greenyellow"></i>
+</div>
+
+ </div>
+ <script>
+    window.onload = function() {
+        var url_string = new URL(window.location.href);
+        var urlSearch = document.location.search;
+        const urlParams = new URLSearchParams(urlSearch);
+        var verification_code = urlParams.get('token');
+        console.log("verification_code========", verification_code);
+        return verification_code;
+    };
+ 
+    var url_location = new URL(window.location.href);
+    let popup = document.getElementById("popup");
+    let baseUrl = url_location.origin;
+    let verification_token = window.onload();
+
+    async function openPopup(){
+       let urlData = await window.fetch(baseUrl+'/users/validate_verification_code/'+verification_token,
+       {
+            method: 'POST',
+            headers: {}
+        })
+        .then((response) => response.json())
+        .then((data) => data);
+        console.log("urlData=====", urlData);
+        if(urlData.status){
+            popup.classList.add("open-popup");
+        } else {
+            popup2.classList.add("open-popup");
+        }
+        
+    }
+
+    function closePopup(){
+
+    popup.classList.remove("open-popup");
+    popup2.classList.remove("open-popup");
+    }
+
+// Call the main function when the page loads
+document.addEventListener('DOMContentLoaded', openPopup);
+
+</script>    
+</body>
+</html>
